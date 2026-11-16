@@ -1,0 +1,30 @@
+[Unit]
+Description=OCI A1 instance provisioner
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=oci-a1-provisioner
+Group=oci-a1-provisioner
+WorkingDirectory=/opt/oci-a1-provisioner
+ExecStart=/opt/oci-a1-provisioner/.venv/bin/python -u /opt/oci-a1-provisioner/provisioner.py
+Restart=on-failure
+RestartSec=30
+RestartPreventExitStatus=3
+UMask=0077
+StateDirectory=oci-a1-provisioner
+StateDirectoryMode=0700
+LogsDirectory=oci-a1-provisioner
+LogsDirectoryMode=0700
+LoadCredential=oci-config:/etc/oci-a1-provisioner/oci-config
+LoadCredential=oci-api-key:/etc/oci-a1-provisioner/oci-api-key.pem
+LoadCredential=ssh-public-key:/etc/oci-a1-provisioner/ssh-public-key.pub
+LoadCredential=discord-webhook:/etc/oci-a1-provisioner/discord-webhook
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+
+[Install]
+WantedBy=multi-user.target

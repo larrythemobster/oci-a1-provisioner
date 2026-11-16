@@ -1,0 +1,9 @@
+# Replace every placeholder with values from your own OCI account.
+# systemd credentials redirect key_file to the protected credential copy.
+[DEFAULT]
+user=<YOUR_USER_OCID>
+fingerprint=<YOUR_API_KEY_FINGERPRINT>
+tenancy=<YOUR_TENANCY_OCID>
+region=<YOUR_OCI_REGION>
+key_file=/etc/oci-a1-provisioner/oci-api-key.pem
+# For an encrypted API key, add pass_phrase to the protected config file only.
